@@ -1,1 +1,1 @@
-# Android-Kodein-MVP-Template
+# Android-Kotlin-MVVM-Template
