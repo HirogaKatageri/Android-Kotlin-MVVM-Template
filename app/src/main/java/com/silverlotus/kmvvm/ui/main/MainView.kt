@@ -7,6 +7,7 @@ import com.silverlotus.kmvvm.data.Ip
  */
 interface MainView {
 
-    fun showIp(ip: Ip?)
+    fun showProgressBar()
+    fun hideProgressBar()
 
 }

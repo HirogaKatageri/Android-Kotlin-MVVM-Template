@@ -14,11 +14,9 @@ class MainViewModel : ViewModel() {
 
     private var ipAddress = MutableLiveData<String>()
     private lateinit var owner: LifecycleOwner
-    private lateinit var view: MainView
 
     fun attach(fragment: MainFragment) {
         owner = fragment
-        view = fragment
     }
 
     /**
