@@ -10,7 +10,7 @@ sealed class IpAddressApi : FuelRouting {
 
     override val basePath: String = "https://api.ipify.org"
 
-    class myIp : IpAddressApi()
+    class MyIp : IpAddressApi()
 
     override val headers: Map<String, String>?
         get() = null
@@ -18,7 +18,7 @@ sealed class IpAddressApi : FuelRouting {
     override val method: Method
         get() {
             when (this) {
-                is myIp -> return Method.GET
+                is MyIp -> return Method.GET
             }
         }
 
@@ -28,7 +28,7 @@ sealed class IpAddressApi : FuelRouting {
     override val path: String
         get() {
             return when (this) {
-                is myIp -> "?format=json"
+                is MyIp -> "?format=json"
             }
         }
 }

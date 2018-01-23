@@ -1,7 +1,7 @@
 package com.silverlotus.kmvvm.ui.main
 
 import android.os.Bundle
-import com.silverlotus.kmvp.R
+import com.silverlotus.kmvvm.R
 import com.silverlotus.kmvvm.root.RootActivity
 
 /**

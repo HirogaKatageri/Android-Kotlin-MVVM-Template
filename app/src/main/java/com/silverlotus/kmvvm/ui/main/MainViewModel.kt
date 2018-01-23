@@ -24,7 +24,7 @@ class MainViewModel : ViewModel() {
 
     fun fetchMyIp(): LiveData<String> {
 
-        Fuel.request(IpAddressApi.myIp())
+        Fuel.request(IpAddressApi.MyIp())
                 .liveDataResponse()
                 .observe(owner, Observer {
 
