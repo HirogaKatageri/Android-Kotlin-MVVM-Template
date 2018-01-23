@@ -8,6 +8,10 @@ import com.github.kittinunf.fuel.util.FuelRouting
  */
 sealed class IpAddressApi : FuelRouting {
 
+    /**
+     * For more information in the FuelRouting interface.
+     * @see <a href="https://github.com/kittinunf/Fuel#routing-support">Fuel Routing Support</a>
+     * */
     override val basePath: String = "https://api.ipify.org"
 
     class MyIp : IpAddressApi()

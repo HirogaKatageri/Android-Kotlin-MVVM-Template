@@ -16,5 +16,6 @@ This is just a small basic template. I'll edit and add more stuff to it soon. Ho
 
 Stuff I want to add and show:
 * Android Architecture Room
+* More in depth usage of Kodein
 
 For every developer out there, please do tell me if there are ways to optimize my code. Thank you :)
