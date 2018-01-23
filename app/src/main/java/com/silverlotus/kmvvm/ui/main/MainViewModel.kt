@@ -12,32 +12,29 @@ import com.silverlotus.kmvvm.data.Ip
  */
 class MainViewModel : ViewModel() {
 
-    private var ipAddress = MutableLiveData<String>()
-    private lateinit var owner: LifecycleOwner
-
-    fun attach(fragment: MainFragment) {
-        owner = fragment
-    }
+    private lateinit var ipAddress:LiveData<String>
 
     /**
+     * ViewModel improved thanks to pskink's Suggestion on using LiveData Transformation. Since 2018/01/23
+     *
      * For more information regarding Fuel Request using Fuel Routing and Live Data Response.
      * @see <a href="https://github.com/kittinunf/Fuel#routing-support">Fuel Routing Support</a>
      * @see <a href="https://github.com/kittinunf/Fuel#livedata-support">Fuel LiveData Support</a>
+     * @see <a href="https://stackoverflow.com/users/2252830/pskink">pskink's</a> <a href="https://stackoverflow.com/questions/48396092/should-i-include-lifecycleowner-in-viewmodel#comment83784239_48396092"> suggestion on using LiveData Transformation</a>
      * */
     fun fetchMyIp(): LiveData<String> {
 
-        Fuel.request(IpAddressApi.MyIp())
-                .liveDataResponse()
-                .observe(owner, Observer {
+        ipAddress = Transformations.map(Fuel.request(IpAddressApi.MyIp()).liveDataResponse(), {
 
-                    if (it?.first?.statusCode == 200) {//If you want you can add a status code checker here.
+            var ip:String? = ""
 
-                        it.second.success {
+                it.second.success {
 
-                            ipAddress.value = Ip.toIp(String(it))?.ip
-                        }
-                    }
-                })
+                    ip = Ip.toIp(String(it))?.ip
+                }
+            ip
+        })
+
         return ipAddress
     }
 

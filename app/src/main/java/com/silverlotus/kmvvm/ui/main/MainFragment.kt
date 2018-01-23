@@ -29,7 +29,6 @@ class MainFragment : RootFragment(), MainView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         model = ViewModelProviders.of(this).get(MainViewModel::class.java)
-        model.attach(this)
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? =
