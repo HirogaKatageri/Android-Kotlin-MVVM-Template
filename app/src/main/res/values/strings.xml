@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">KMVP</string>
+    <string name="app_name">KMVVM</string>
     <string name="retrieve_ip">Retrieve IP</string>
     <string name="check_your_ip">Check your IP</string>
 </resources>
