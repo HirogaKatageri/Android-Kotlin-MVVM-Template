@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.silverlotus.kmvvm.R
+import com.silverlotus.kmvvm.data.Ip
 import com.silverlotus.kmvvm.root.RootFragment
 import kotlinx.android.synthetic.main.fragment_main.*
 
@@ -21,8 +22,9 @@ class MainFragment : RootFragment(), MainView {
      * Observer for our ViewModel IpAddress LiveData value.
      * @see Observer.onChanged
      * */
-    private val ipObserver = Observer<String> {
-        textIp.text = it
+    private val ipObserver = Observer<Ip> { ip ->
+        textIp.setText(ip?.ip)
+
         hideProgressBar()
     }
 
@@ -31,10 +33,10 @@ class MainFragment : RootFragment(), MainView {
         model = ViewModelProviders.of(this).get(MainViewModel::class.java)
     }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? =
-            inflater?.inflate(R.layout.fragment_main, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
+            inflater.inflate(R.layout.fragment_main, container, false)
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         buttonRetrieveIp.setOnClickListener {
