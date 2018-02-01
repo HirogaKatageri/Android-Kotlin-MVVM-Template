@@ -1,4 +1,4 @@
-package com.silverlotus.kmvp
+package com.silverlotus.kmvvm
 
 import org.junit.Test
 
