@@ -4,7 +4,9 @@ import android.arch.lifecycle.*
 import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.livedata.liveDataResponse
 import com.github.kittinunf.result.success
+import com.silverlotus.kmvvm.api.Api
 import com.silverlotus.kmvvm.api.IpAddressApi
+import com.silverlotus.kmvvm.api.Result
 import com.silverlotus.kmvvm.data.Ip
 
 /**
@@ -12,7 +14,7 @@ import com.silverlotus.kmvvm.data.Ip
  */
 class MainViewModel : ViewModel() {
 
-    private lateinit var ipAddress:LiveData<String>
+    private var ipAddress:LiveData<Ip> = MutableLiveData()
 
     /**
      * ViewModel improved thanks to pskink's Suggestion on using LiveData Transformation. Since 2018/01/23
@@ -22,17 +24,11 @@ class MainViewModel : ViewModel() {
      * @see <a href="https://github.com/kittinunf/Fuel#livedata-support">Fuel LiveData Support</a>
      * @see <a href="https://stackoverflow.com/users/2252830/pskink">pskink's</a> <a href="https://stackoverflow.com/questions/48396092/should-i-include-lifecycleowner-in-viewmodel#comment83784239_48396092"> suggestion on using LiveData Transformation</a>
      * */
-    fun fetchMyIp(): LiveData<String> {
+    fun fetchMyIp(): LiveData<Ip> {
 
-        ipAddress = Transformations.map(Fuel.request(IpAddressApi.MyIp()).liveDataResponse(), {
+        ipAddress = Transformations.map(Api.getIpAddress(), {result ->
 
-            var ip:String? = ""
-
-                it.second.success {
-
-                    ip = Ip.toIp(String(it))?.ip
-                }
-            ip
+            Ip.toIp(result.jsonString)
         })
 
         return ipAddress
