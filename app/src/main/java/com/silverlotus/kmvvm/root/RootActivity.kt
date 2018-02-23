@@ -20,7 +20,4 @@ open class RootActivity : AppCompatActivity(), KodeinInjected {
         inject(appKodein())
     }
 
-    override fun onResume() {
-        super.onResume()
-    }
 }
