@@ -1,37 +1,32 @@
 package com.silverlotus.kmvvm.ui.main
 
-import android.arch.lifecycle.*
-import com.github.kittinunf.fuel.Fuel
-import com.github.kittinunf.fuel.livedata.liveDataResponse
-import com.github.kittinunf.result.success
-import com.silverlotus.kmvvm.api.Api
-import com.silverlotus.kmvvm.api.IpAddressApi
-import com.silverlotus.kmvvm.api.Result
-import com.silverlotus.kmvvm.data.Ip
+import android.arch.lifecycle.LiveData
+import android.arch.lifecycle.MutableLiveData
+import com.github.kittinunf.fuel.core.FuelError
+import com.github.kittinunf.result.Result
+import com.github.salomonbrys.kodein.instance
+import com.silverlotus.api.data.MangaListData
+import com.silverlotus.kmvvm.repository.MangaRepository
+import com.silverlotus.kmvvm.room.entity.MangaEntity
+import com.silverlotus.kmvvm.root.RootViewModel
 
 /**
  * Created by Gian Patrick Quintana on 1/22/2018.
  */
-class MainViewModel : ViewModel() {
+class MainViewModel : RootViewModel<MainViewModel>() {
 
-    private var ipAddress:LiveData<Ip> = MutableLiveData()
+    private val mangaRepository by injector.instance<MangaRepository>()
 
-    /**
-     * ViewModel improved thanks to pskink's Suggestion on using LiveData Transformation. Since 2018/01/23
-     *
-     * For more information regarding Fuel Request using Fuel Routing and Live Data Response.
-     * @see <a href="https://github.com/kittinunf/Fuel#routing-support">Fuel Routing Support</a>
-     * @see <a href="https://github.com/kittinunf/Fuel#livedata-support">Fuel LiveData Support</a>
-     * @see <a href="https://stackoverflow.com/users/2252830/pskink">pskink's</a> <a href="https://stackoverflow.com/questions/48396092/should-i-include-lifecycleowner-in-viewmodel#comment83784239_48396092"> suggestion on using LiveData Transformation</a>
-     * */
-    fun fetchMyIp(): LiveData<Ip> {
+    private var liveDaoManga: LiveData<List<MangaEntity>> = MutableLiveData()
 
-        ipAddress = Transformations.map(Api.getIpAddress(), {result ->
+    var isFirstLoad = true
 
-            Ip.toIp(result.jsonString)
-        })
+    fun getMangaList(): LiveData<List<MangaEntity>> {
 
-        return ipAddress
+        liveDaoManga = mangaRepository.getMangaList()
+
+        return liveDaoManga
     }
 
+    fun fetchMangaList() = mangaRepository.fetchMangaList()
 }

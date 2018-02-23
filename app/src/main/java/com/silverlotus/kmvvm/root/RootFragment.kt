@@ -16,8 +16,8 @@ open class RootFragment : Fragment(), KodeinInjected {
 
     override val injector = KodeinInjector()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         inject(appKodein())
-        return super.onCreateView(inflater, container, savedInstanceState)
     }
 }
