@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">KMVVM</string>
-    <string name="retrieve_ip">Retrieve IP</string>
-    <string name="check_your_ip">Check your IP</string>
+    <string name="get_manga">Get Manga</string>
+    <string name="manga_updated">Manga Updated</string>
 </resources>

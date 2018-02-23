@@ -1,10 +1,15 @@
 package com.silverlotus.kmvvm.root
 
 import android.app.Application
-import com.github.kittinunf.fuel.core.FuelManager
+import android.arch.persistence.room.Room
 import com.github.salomonbrys.kodein.*
+import com.github.salomonbrys.kodein.android.appKodein
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger
+import com.silverlotus.api.Api
+import com.silverlotus.kmvvm.repository.MangaRepository
+import com.silverlotus.kmvvm.room.AppDatabase
+import com.silverlotus.kmvvm.room.dao.MangaDao
 
 /**
  * Created by Gian Patrick Quintana on 1/22/2018.
@@ -20,7 +25,13 @@ class App : Application(), KodeinAware {
      * */
     override val kodein by Kodein.lazy {
 
-        bind<FuelManager>() with singleton { FuelManager.instance }//Just a simple example of a type of binding. PS: Currently useless since we're using FuelRouting.
+        val database: AppDatabase = Room.databaseBuilder(applicationContext, AppDatabase::class.java, "app.db")
+                .allowMainThreadQueries()
+                .build()
+
+        bind<MangaDao>() with singleton { database.mangaListDao() }
+        bind<MangaRepository>() with singleton { MangaRepository().init(appKodein()) }
+        bind<Api>() with singleton { Api() }
     }
 
     override fun onCreate() {
