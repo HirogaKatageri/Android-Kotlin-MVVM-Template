@@ -2,6 +2,7 @@ package com.silverlotus.kmvvm.ui.main
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
+import android.arch.paging.PagedList
 import com.github.salomonbrys.kodein.instance
 import com.silverlotus.kmvvm.repository.MangaRepository
 import com.silverlotus.kmvvm.room.entity.MangaEntity
@@ -14,15 +15,15 @@ class MainViewModel : RootViewModel<MainViewModel>() {
 
     private val mangaRepository by injector.instance<MangaRepository>()
 
-    private var liveDaoManga: LiveData<List<MangaEntity>> = MutableLiveData()
+    private var liveDaoMangaEntity: LiveData<PagedList<MangaEntity>> = MutableLiveData()
 
     var isFirstLoad = true
 
-    fun getMangaList(): LiveData<List<MangaEntity>> {
+    fun getMangaList(): LiveData<PagedList<MangaEntity>> {
 
-        liveDaoManga = mangaRepository.getMangaList()
+        liveDaoMangaEntity = mangaRepository.getMangaList().build()
 
-        return liveDaoManga
+        return liveDaoMangaEntity
     }
 
     fun fetchMangaList() = mangaRepository.fetchMangaList()

@@ -48,6 +48,8 @@ dependencies {
     implementation 'android.arch.persistence.room:runtime:1.1.0-alpha2'
     kapt "android.arch.persistence.room:compiler:1.1.0-alpha2"
 
+    implementation "android.arch.paging:runtime:1.0.0-alpha5"
+
     implementation 'com.github.nitrico.lastadapter:lastadapter:2.3.0'
     kapt "com.android.databinding:compiler:3.0.1"
 

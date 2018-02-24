@@ -1,5 +1,6 @@
 package com.silverlotus.kmvvm.room.entity
 
+import android.arch.paging.PositionalDataSource
 import android.arch.persistence.room.ColumnInfo
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey

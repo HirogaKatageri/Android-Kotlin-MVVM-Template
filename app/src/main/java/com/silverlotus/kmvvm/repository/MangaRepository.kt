@@ -15,7 +15,7 @@ class MangaRepository : RootRepository<MangaRepository>() {
     private val mangaDao by injector.instance<MangaDao>()
     private val api by injector.instance<Api>()
 
-    fun getMangaList() = mangaDao.getMangaList()
+    fun getMangaList() = mangaDao.getPagedMangaList()
 
     fun fetchMangaList() {
         api.getMangaList().observeForever({ result ->
