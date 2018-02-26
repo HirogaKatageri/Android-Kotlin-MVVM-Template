@@ -1,6 +1,7 @@
 package com.silverlotus.kmvvm.room.dao
 
 import android.arch.lifecycle.LiveData
+import android.arch.paging.DataSource
 import android.arch.persistence.room.Dao
 import android.arch.persistence.room.Insert
 import android.arch.persistence.room.OnConflictStrategy.REPLACE
@@ -13,6 +14,9 @@ import com.silverlotus.kmvvm.room.entity.MangaEntity
  */
 @Dao
 interface MangaDao {
+
+    @Query("select * from manga_list")
+    fun getPagedMangaList(): DataSource.Factory<Int, MangaEntity>
 
     @Query("select * from manga_list")
     fun getMangaList(): LiveData<List<MangaEntity>>

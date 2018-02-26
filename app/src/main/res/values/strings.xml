@@ -1,5 +1,4 @@
 <resources>
     <string name="app_name">KMVVM</string>
     <string name="get_manga">Get Manga</string>
-    <string name="manga_updated">Manga Updated</string>
 </resources>

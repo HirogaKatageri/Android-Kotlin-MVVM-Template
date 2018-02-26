@@ -8,7 +8,7 @@ import com.silverlotus.kmvvm.room.entity.MangaEntity
 /**
  * Created by Gian Patrick Quintana on 2/21/2018.
  */
-@Database(entities = arrayOf(MangaEntity::class), version = 1, exportSchema = false)
+@Database(entities = [(MangaEntity::class)], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun mangaListDao(): MangaDao

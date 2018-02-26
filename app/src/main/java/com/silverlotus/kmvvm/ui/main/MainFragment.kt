@@ -7,14 +7,12 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.github.nitrico.lastadapter.LastAdapter
 import com.github.nitrico.lastadapter.Type
 import com.github.salomonbrys.kodein.android.appKodein
 import com.orhanobut.logger.Logger
-import com.silverlotus.kmvvm.BR
 import com.silverlotus.kmvvm.R
+import com.silverlotus.kmvvm.adapter.MangaAdapter
 import com.silverlotus.kmvvm.databinding.ItemMangaBinding
-import com.silverlotus.kmvvm.room.entity.MangaEntity
 import com.silverlotus.kmvvm.root.RootFragment
 import kotlinx.android.synthetic.main.fragment_main.*
 
@@ -24,8 +22,7 @@ import kotlinx.android.synthetic.main.fragment_main.*
 class MainFragment : RootFragment(), MainView {
 
     private lateinit var model: MainViewModel
-    private lateinit var lastAdapter: LastAdapter
-    private val adapterList = arrayListOf<Any>()
+    private val adapter = MangaAdapter()
 
     private val typeMangaEntity = Type<ItemMangaBinding>(R.layout.item_manga)
             .onClick { item ->
@@ -43,16 +40,8 @@ class MainFragment : RootFragment(), MainView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        recyclerMangaTitles.adapter = adapter
         recyclerMangaTitles.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
-
-        lastAdapter = LastAdapter(adapterList, BR.item)
-                .type { item, _ ->
-                    when (item) {
-                        is MangaEntity -> typeMangaEntity
-                        else -> null
-                    }
-                }
-                .into(recyclerMangaTitles)
 
         buttonGetMangas.setOnClickListener {
             showProgressBar()
@@ -61,12 +50,7 @@ class MainFragment : RootFragment(), MainView {
 
                 model.getMangaList().observe(this, Observer { list ->
 
-                    if (list != null) {
-                        adapterList.clear()
-                        adapterList.addAll(list)
-                        lastAdapter.notifyDataSetChanged()
-                    }
-
+                    adapter.setList(list)
                     hideProgressBar()
                 })
 
