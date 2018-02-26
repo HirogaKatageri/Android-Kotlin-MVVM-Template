@@ -21,7 +21,7 @@ class MainViewModel : RootViewModel<MainViewModel>() {
 
     fun getMangaList(): LiveData<PagedList<MangaEntity>> {
 
-        liveDaoMangaEntity = mangaRepository.getMangaList().build()
+        liveDaoMangaEntity = mangaRepository.getMangaList()
 
         return liveDaoMangaEntity
     }

@@ -22,7 +22,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    dataBinding.enabled true
 }
 
 dependencies {
@@ -49,9 +48,6 @@ dependencies {
     kapt "android.arch.persistence.room:compiler:1.1.0-alpha2"
 
     implementation "android.arch.paging:runtime:1.0.0-alpha5"
-
-    implementation 'com.github.nitrico.lastadapter:lastadapter:2.3.0'
-    kapt "com.android.databinding:compiler:3.0.1"
 
     implementation "com.github.kittinunf.fuel:fuel:$fuel_version"
 

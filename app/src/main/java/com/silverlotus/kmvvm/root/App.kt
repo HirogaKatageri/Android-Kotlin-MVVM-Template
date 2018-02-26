@@ -37,6 +37,7 @@ class App : Application(), KodeinAware {
     override fun onCreate() {
         super.onCreate()
 
+
         Logger.addLogAdapter(AndroidLogAdapter())
     }
 }

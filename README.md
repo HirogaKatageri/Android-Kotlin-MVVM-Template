@@ -11,11 +11,15 @@ Anyways so this is my MVVM template. I use these stuff:
 * Android Architecture LiveData
 * Android Architecture Lifecycle
 * Android Architecture Room
+* Android Architecture Paging
 * [Klaxon](https://github.com/cbeust/klaxon) (JSON Parser)
 * [Logger](https://github.com/orhanobut/logger) (Logger)
 
-This is currently my 2nd update with an even more improved template. Removed a lot of unnecessary junk code. Also modularized the project by separating Api from App.
+This is currently my 3rd update with an even more improved template.
+* Renamed some directories and classes to fit with common name standards. E.g. Data -> Model
+* Removed DataBinding and LastAdapter with current template, found LastAdapter incompatible with Android Architecture Paging Library.
+* Added PagedListAdapter that comes with the Paging Library.
 
-I'll be adding some documentation in my 3rd update.
+I'll be adding some documentation in my 4th update. 
 
 For every developer out there, please do tell me if there are ways to optimize my code. Thank you :)

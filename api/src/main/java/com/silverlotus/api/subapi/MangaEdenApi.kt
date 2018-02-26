@@ -1,4 +1,4 @@
-package com.silverlotus.api.sub
+package com.silverlotus.api.subapi
 
 import com.github.kittinunf.fuel.core.Method
 import com.github.kittinunf.fuel.util.FuelRouting
@@ -6,7 +6,7 @@ import com.github.kittinunf.fuel.util.FuelRouting
 /**
  * Created by Gian Patrick Quintana on 2/19/2018.
  */
-sealed class MangaEdenApi : FuelRouting {
+internal sealed class MangaEdenApi : FuelRouting {
 
     class MangaList : MangaEdenApi()
 
@@ -30,7 +30,7 @@ sealed class MangaEdenApi : FuelRouting {
     override val path: String
         get() {
             when (this) {
-                is MangaList -> return "api/list/0/?p=0&l=25"
+                is MangaList -> return "api/list/0/"
             }
         }
 }
