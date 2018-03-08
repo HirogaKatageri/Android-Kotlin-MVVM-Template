@@ -17,11 +17,12 @@ import com.silverlotus.kmvvm.room.dao.MangaDao
 class App : Application(), KodeinAware {
 
     /**
-     * Initiate bindings here.
+     * This is where we create those bindings a.k.a Dependency Injections.
+     * Below you can see I have 3 types of bindings.
+     * I also initialized my Room Database within it.
+     * You can explore more details about Kodein and dependency injection with the link below.
      *
-     * bind<Type>() with singleton { Type() }
-     *
-     * @see <a href="https://salomonbrys.github.io/Kodein/#_bindings_declaring_dependencies">Kodein Declaring Dependencies</a>
+     * https://salomonbrys.github.io/Kodein/#_bindings_declaring_dependencies
      * */
     override val kodein by Kodein.lazy {
 
@@ -36,7 +37,6 @@ class App : Application(), KodeinAware {
 
     override fun onCreate() {
         super.onCreate()
-
 
         Logger.addLogAdapter(AndroidLogAdapter())
     }

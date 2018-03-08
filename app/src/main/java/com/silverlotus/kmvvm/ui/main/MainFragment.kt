@@ -7,12 +7,9 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.github.nitrico.lastadapter.Type
 import com.github.salomonbrys.kodein.android.appKodein
-import com.orhanobut.logger.Logger
 import com.silverlotus.kmvvm.R
 import com.silverlotus.kmvvm.adapter.MangaAdapter
-import com.silverlotus.kmvvm.databinding.ItemMangaBinding
 import com.silverlotus.kmvvm.root.RootFragment
 import kotlinx.android.synthetic.main.fragment_main.*
 
@@ -23,11 +20,6 @@ class MainFragment : RootFragment(), MainView {
 
     private lateinit var model: MainViewModel
     private val adapter = MangaAdapter()
-
-    private val typeMangaEntity = Type<ItemMangaBinding>(R.layout.item_manga)
-            .onClick { item ->
-                Logger.d(item.binding.item?.toString())
-            }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,7 +42,7 @@ class MainFragment : RootFragment(), MainView {
 
                 model.getMangaList().observe(this, Observer { list ->
 
-                    adapter.setList(list)
+                    adapter.submitList(list)
                     hideProgressBar()
                 })
 

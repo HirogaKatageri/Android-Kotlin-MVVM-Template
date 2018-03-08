@@ -44,10 +44,10 @@ dependencies {
     implementation "android.arch.lifecycle:extensions:$architecture_version"
     implementation "android.arch.lifecycle:common-java8:$architecture_version"
 
-    implementation 'android.arch.persistence.room:runtime:1.1.0-alpha2'
-    kapt "android.arch.persistence.room:compiler:1.1.0-alpha2"
+    implementation 'android.arch.persistence.room:runtime:1.1.0-alpha3'
+    kapt "android.arch.persistence.room:compiler:1.1.0-alpha3"
 
-    implementation "android.arch.paging:runtime:1.0.0-alpha5"
+    implementation "android.arch.paging:runtime:1.0.0-alpha6"
 
     implementation "com.github.kittinunf.fuel:fuel:$fuel_version"
 
