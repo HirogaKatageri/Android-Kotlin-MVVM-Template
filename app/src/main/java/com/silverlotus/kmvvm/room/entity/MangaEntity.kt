@@ -25,14 +25,6 @@ class MangaEntity {
         return this
     }
 
-    fun isTheSameAs(mangaEntity: MangaEntity): Boolean {
-        return id == mangaEntity.id
-    }
-
-    fun areContentsTheSameAs(mangaEntity: MangaEntity): Boolean {
-        return title == mangaEntity.title
-    }
-
     companion object {
 
         fun fromMangaList(mangaListModel: MangaListModel): List<MangaEntity> =
