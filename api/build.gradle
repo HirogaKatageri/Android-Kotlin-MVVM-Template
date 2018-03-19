@@ -30,7 +30,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
-    implementation 'com.android.support:appcompat-v7:27.0.2'
+    implementation "com.android.support:appcompat-v7:$support_library_version"
 
     implementation "com.github.kittinunf.fuel:fuel:$fuel_version"
     implementation "com.github.kittinunf.fuel:fuel-android:$fuel_version"
