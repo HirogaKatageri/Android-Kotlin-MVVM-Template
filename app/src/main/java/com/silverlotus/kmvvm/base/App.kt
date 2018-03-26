@@ -1,4 +1,4 @@
-package com.silverlotus.kmvvm.root
+package com.silverlotus.kmvvm.base
 
 import android.app.Application
 import android.arch.persistence.room.Room

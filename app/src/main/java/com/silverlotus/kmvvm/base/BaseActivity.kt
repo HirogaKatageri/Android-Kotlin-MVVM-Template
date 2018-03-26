@@ -1,4 +1,4 @@
-package com.silverlotus.kmvvm.root
+package com.silverlotus.kmvvm.base
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -11,7 +11,7 @@ import com.github.salomonbrys.kodein.android.appKodein
  * Created by Gian Patrick Quintana on 1/22/2018.
  */
 @SuppressLint("Registered")
-open class RootActivity : AppCompatActivity(), KodeinInjected {
+abstract class BaseActivity : AppCompatActivity(), KodeinInjected {
 
     override val injector = KodeinInjector()
 

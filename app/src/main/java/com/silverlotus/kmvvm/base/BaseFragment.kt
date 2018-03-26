@@ -1,4 +1,4 @@
-package com.silverlotus.kmvvm.root
+package com.silverlotus.kmvvm.base
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -9,7 +9,7 @@ import com.github.salomonbrys.kodein.android.appKodein
 /**
  * Created by Gian Patrick Quintana on 1/22/2018.
  */
-open class RootFragment : Fragment(), KodeinInjected {
+abstract class BaseFragment : Fragment(), KodeinInjected {
 
     override val injector = KodeinInjector()
 

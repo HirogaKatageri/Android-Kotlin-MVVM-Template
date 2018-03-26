@@ -1,6 +1,5 @@
-package com.silverlotus.kmvvm.root
+package com.silverlotus.kmvvm.base
 
-import android.arch.lifecycle.ViewModel
 import com.github.salomonbrys.kodein.Kodein
 import com.github.salomonbrys.kodein.KodeinInjected
 import com.github.salomonbrys.kodein.KodeinInjector
@@ -8,7 +7,7 @@ import com.github.salomonbrys.kodein.KodeinInjector
 /**
  * Created by Gian Patrick Quintana on 2/23/2018.
  */
-abstract class RootViewModel<out T> : ViewModel(), KodeinInjected {
+abstract class BaseRepository<out T> : KodeinInjected {
 
     override val injector: KodeinInjector = KodeinInjector()
 

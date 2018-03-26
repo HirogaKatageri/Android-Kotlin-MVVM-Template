@@ -6,12 +6,12 @@ import android.arch.paging.PagedList
 import com.github.salomonbrys.kodein.instance
 import com.silverlotus.kmvvm.repository.MangaRepository
 import com.silverlotus.kmvvm.room.entity.MangaEntity
-import com.silverlotus.kmvvm.root.RootViewModel
+import com.silverlotus.kmvvm.base.BaseViewModel
 
 /**
  * Created by Gian Patrick Quintana on 1/22/2018.
  */
-class MainViewModel : RootViewModel<MainViewModel>() {
+class MainViewModel : BaseViewModel<MainViewModel>() {
 
     private val mangaRepository by injector.instance<MangaRepository>()
 

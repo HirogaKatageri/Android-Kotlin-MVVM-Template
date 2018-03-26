@@ -10,13 +10,13 @@ import android.view.ViewGroup
 import com.github.salomonbrys.kodein.android.appKodein
 import com.silverlotus.kmvvm.R
 import com.silverlotus.kmvvm.adapter.MangaAdapter
-import com.silverlotus.kmvvm.root.RootFragment
+import com.silverlotus.kmvvm.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_main.*
 
 /**
  * Created by Gian Patrick Quintana on 1/22/2018.
  */
-class MainFragment : RootFragment(), MainView {
+class MainFragment : BaseFragment(), MainView {
 
     private lateinit var model: MainViewModel
     private val adapter = MangaAdapter()
