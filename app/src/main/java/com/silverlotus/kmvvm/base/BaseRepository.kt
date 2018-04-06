@@ -1,19 +1,23 @@
 package com.silverlotus.kmvvm.base
 
-import com.github.salomonbrys.kodein.Kodein
-import com.github.salomonbrys.kodein.KodeinInjected
-import com.github.salomonbrys.kodein.KodeinInjector
+import android.content.Context
+import org.kodein.di.Kodein
+import org.kodein.di.KodeinAware
+import org.kodein.di.KodeinTrigger
+import org.kodein.di.android.closestKodein
 
 /**
  * Created by Gian Patrick Quintana on 2/23/2018.
  */
-abstract class BaseRepository<out T> : KodeinInjected {
+abstract class BaseRepository<out T>(context: Context) : KodeinAware {
 
-    override val injector: KodeinInjector = KodeinInjector()
+    override val kodein: Kodein by closestKodein(context)
+    override val kodeinTrigger: KodeinTrigger = KodeinTrigger()
 
     @Suppress("UNCHECKED_CAST")
-    fun init(kodein: Kodein): T {
-        injector.inject(kodein)
+    fun init(): T {
+
+        kodeinTrigger.trigger()
         return this as T
     }
 

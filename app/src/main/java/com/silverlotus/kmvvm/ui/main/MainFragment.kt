@@ -4,10 +4,11 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.github.salomonbrys.kodein.android.appKodein
+import com.orhanobut.logger.Logger
 import com.silverlotus.kmvvm.R
 import com.silverlotus.kmvvm.adapter.MangaAdapter
 import com.silverlotus.kmvvm.base.BaseFragment
@@ -23,7 +24,7 @@ class MainFragment : BaseFragment(), MainView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        model = ViewModelProviders.of(this).get(MainViewModel::class.java).init(appKodein())
+        model = ViewModelProviders.of(this).get(MainViewModel::class.java).init(kodein)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
@@ -33,14 +34,22 @@ class MainFragment : BaseFragment(), MainView {
         super.onViewCreated(view, savedInstanceState)
 
         recyclerMangaTitles.adapter = adapter
-        recyclerMangaTitles.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+        val layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+        recyclerMangaTitles.layoutManager = layoutManager
+        recyclerMangaTitles.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+
+            override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                Logger.d(layoutManager.findLastCompletelyVisibleItemPosition())
+            }
+        })
 
         buttonGetMangas.setOnClickListener {
             showProgressBar()
 
             if (model.isFirstLoad) {
 
-                model.getMangaList().observe(this, Observer { list ->
+                model.getMangaList(20).observe(this, Observer { list ->
 
                     adapter.submitList(list)
                     hideProgressBar()
@@ -49,7 +58,7 @@ class MainFragment : BaseFragment(), MainView {
                 model.fetchMangaList()
                 model.isFirstLoad = false
             } else
-                model.fetchMangaList()
+                model.getMangaList(20)
 
         }
     }

@@ -18,8 +18,15 @@ class MangaAdapter : ListAdapter<MangaEntity, MangaAdapter.MangaViewHolder>(Mang
     private class MangaItemCallback : DiffUtil.ItemCallback<MangaEntity>() {
 
         override fun areItemsTheSame(oldItem: MangaEntity?, newItem: MangaEntity?): Boolean = oldItem?.id == newItem?.id
-        
+
         override fun areContentsTheSame(oldItem: MangaEntity?, newItem: MangaEntity?): Boolean = oldItem?.title == newItem?.title
+    }
+
+    fun isLastItemVisible(): Boolean {
+
+        getItem(itemCount - 1)
+
+        return false
     }
 
     override fun onBindViewHolder(holder: MangaViewHolder, position: Int) {

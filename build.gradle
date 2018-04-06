@@ -3,15 +3,15 @@
 buildscript {
     ext.support_library_version = '27.1.0'
     ext.kotlin_version = '1.2.31'
-    ext.kodein_version = '4.1.0'
+    ext.kodein_version = '5.0.0'
     ext.fuel_version = '1.12.1'
-    ext.architecture_version = '1.1.0'
+    ext.architecture_version = '1.1.1'
     repositories {
         google()
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.1'
+        classpath 'com.android.tools.build:gradle:3.1.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
         // NOTE: Do not place your application dependencies here; they belong
@@ -23,6 +23,7 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven { url 'https://dl.bintray.com/kodein-framework/Kodein-DI/' } /*TODO Remove once all Kodein dependencies is in jCenter*/
     }
 }
 
