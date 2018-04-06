@@ -2,12 +2,12 @@ package com.silverlotus.kmvvm.ui.main
 
 import android.os.Bundle
 import com.silverlotus.kmvvm.R
-import com.silverlotus.kmvvm.root.RootActivity
+import com.silverlotus.kmvvm.base.BaseActivity
 
 /**
  * Created by Gian Patrick Quintana on 1/22/2018.
  */
-class MainActivity : RootActivity() {
+class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
